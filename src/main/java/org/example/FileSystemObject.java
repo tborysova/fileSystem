@@ -2,15 +2,16 @@ package org.example;
 
 public abstract class FileSystemObject {
 
-    private Folder root;
-    private final String name;
+    private Directory root;
+    private String name;
 
     public FileSystemObject(String name) {
-        this.name = name;
+        if (isValidFileName(name)) {
+            this.name = name;
+        }
     }
 
     public String getPath() {
-
         return root != null ? root.getPath() + "/" + name : name;
     }
 
@@ -28,16 +29,24 @@ public abstract class FileSystemObject {
 
     public boolean isDirectory() {
 
-        return this instanceof Folder;
+        return this instanceof Directory;
     }
 
-    public void setRoot(Folder root) {
+    public void setRoot(Directory root) {
         this.root = root;
+    }
+
+    public boolean isValidFileName(String fileName) {
+        if (fileName == null && !(fileName.length() <= 256)) {
+            throw new IllegalArgumentException("Maximum length of name 256 characters");
+        } else {
+            return true;
+        }
     }
 
     @Override
     public String toString() {
-        return getName() + " (" + getSize() + ")";
+        return getName() + "  (" + getSize() + " bytes) ";
     }
 
 

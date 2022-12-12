@@ -6,29 +6,29 @@ public class Main {
 
         System.out.println("Creating a file system...");
 
-        Folder binDirectory = new Folder("bin");
+        Directory bin = new Directory("bin");
         File lsFile = new File("ls");
-        binDirectory.add(lsFile);
+        bin.add(lsFile);
         File mkdir = new File("mkdir");
-        binDirectory.add(mkdir);
+        bin.add(mkdir);
 
-        Folder workDirectory = new Folder("english");
+        Directory work = new Directory("english");
         File homework = new File("homework.txt");
         homework.setContent("english homework");
-        workDirectory.add(homework);
+        work.add(homework);
 
-        Folder studyDirectory = new Folder("books");
+        Directory study = new Directory("books");
         File book = new File("book.pdf");
         book.setContent("java book");
-        studyDirectory.add(book);
+        study.add(book);
 
-        Folder homeDir = new Folder("home");
-        homeDir.add(workDirectory);
-        homeDir.add(studyDirectory);
+        Directory home = new Directory("home");
+        home.add(work);
+        home.add(study);
 
-        Folder rootDir = new Folder("root");
-        rootDir.add(homeDir);
-        rootDir.add(binDirectory);
+        Directory rootDir = new Directory("root");
+        rootDir.add(home);
+        rootDir.add(bin);
 
         rootDir.print("");
     }
